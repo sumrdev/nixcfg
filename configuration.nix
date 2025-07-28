@@ -45,6 +45,9 @@
     dotnetCorePackages.aspnetcore_8_0-bin
     gopls
     glibc
+    lazygit
+
+    nmap
 
     lua-language-server
     pyright
