@@ -7,6 +7,7 @@
   imports = [
     ../../modules/programs/fish.nix
     ../../modules/programs/git.nix
+    ../../modules/programs/jujutsu.nix
     ../../modules/programs/nvf/nvim.nix
     ../../modules/programs/tmux.nix
     ../../modules/programs/zoxide.nix

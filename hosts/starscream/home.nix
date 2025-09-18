@@ -8,6 +8,7 @@
   imports = [
     ../../modules/programs/hyprlock.nix
     ../../modules/programs/fish.nix
+    ../../modules/programs/jujutsu.nix
     ../../modules/programs/git.nix
     ../../modules/programs/kitty.nix
     ../../modules/programs/nvf/nvim.nix
