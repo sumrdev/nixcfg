@@ -70,7 +70,6 @@
 
   programs.waybar.settings.mainbar.modules-right = ["battery"];
   programs = {
-    jujutsu.enable = true;
     fzf = {
       enable = true;
       enableFishIntegration = true;

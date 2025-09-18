@@ -27,7 +27,6 @@
     stateVersion = "25.05";
   };
   programs = {
-    jujutsu.enable = true;
     fzf = {
       enable = true;
       enableFishIntegration = true;
