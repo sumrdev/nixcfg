@@ -7,7 +7,6 @@
   programs.zen-browser = {
     enable = true;
     policies = {
-      # This is a good practice to disable telemetry
       DisableTelemetry = true;
       ExtensionSettings = {
         # uBlock Origin
