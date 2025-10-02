@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules/programs/fish.nix
     ../../modules/programs/git.nix
@@ -19,6 +20,9 @@
       ripgrep
       tree
       python3
+
+      vtsls
+      prettierd
     ];
 
     username = "ms";

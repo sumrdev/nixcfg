@@ -9,6 +9,7 @@
     interactiveShellInit = ''
       set -U fish_greeting
       set EDITOR nvim
+      set -e WAYLAND_DISPLAY
     '';
     plugins = [
       {

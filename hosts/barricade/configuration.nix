@@ -5,20 +5,24 @@
 # https://github.com/nix-community/NixOS-WSL
 {
   pkgs,
+  outputs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-wsl.nixosModules.default
   ];
+
   wsl.enable = true;
   wsl.defaultUser = "ms";
-  networking.hostName = "nix";
+  networking.hostName = "barricade";
 
   time.timeZone = "Europe/Copenhagen";
 
   system.stateVersion = "25.05";
-  services.envfs.enable = true;
+  services.envfs.enable = false;
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 524288;
   };
@@ -34,6 +38,10 @@
     systemPackages = with pkgs; [
       inputs.pinix.packages.${pkgs.system}.default
       gcc
+      dotnet-sdk_8
+      neovim
+      nil
+      emmet-language-server
     ];
   };
 
@@ -44,13 +52,14 @@
     backupFileExtension = "bak";
 
     users.ms = {
-      imports = [./home.nix];
+      imports = [ ./home.nix ];
     };
+    extraSpecialArgs = { inherit inputs; };
   };
 
   users.users.ms = {
     shell = pkgs.fish;
-    extraGroups = ["docker"];
+    extraGroups = [ "docker" ];
   };
 
   virtualisation.docker = {
@@ -60,10 +69,27 @@
       setSocketVariable = true;
     };
   };
-
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [libsecret];
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ libsecret ];
+    };
+    fish.enable = true;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [
+      "root"
+      "ms"
+    ];
+  };
+
   documentation.man.generateCaches = false;
 }
