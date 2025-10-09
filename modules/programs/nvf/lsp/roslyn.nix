@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib.generators) mkLuaInline;
+  staticLogDir = "/tmp/roslyn-ls-logs";
 in {
   vim.lsp.servers.roslyn_ls = {
     enable = true;
@@ -16,6 +17,7 @@ in {
     cmd = [
       (lib.getExe pkgs.roslyn-ls)
       "--logLevel=Warning"
+      "--extensionLogDirectory=${staticLogDir}"
       "--stdio"
     ];
     capabilities = mkLuaInline "capabilities";

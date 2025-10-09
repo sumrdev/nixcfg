@@ -43,7 +43,6 @@
       python3
       pavucontrol
       nautilus
-      neovim
     ];
 
     username = "ms";
@@ -51,8 +50,8 @@
 
     stateVersion = "24.11";
   };
-  wayland.windowManager.hyprland.settings.monitor = [
-    "DP-3, 1920x1080@240,0x0,1"
+  wayland.windowManager.hyprland.settings.monitor = lib.mkForce [
+    "DP-2, 1920x1080@240,0x0,1"
     "HDMI-A-1, 1920x1080@240, -1080x-200, 1, transform, 1"
   ];
 
@@ -63,7 +62,7 @@
       "/home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
     ];
     hyprpaper.settings.wallpaper = lib.mkForce [
-      "DP-3, /home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
+      "DP-2, /home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
       "HDMI-A-1, /home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
     ];
     vicinae.enable = true;

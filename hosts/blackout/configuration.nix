@@ -42,6 +42,7 @@
   networking = {
     hostName = "blackout";
     networkmanager.enable = true;
+    firewall.enable = false;
   };
 
   time.timeZone = "Europe/Copenhagen";
