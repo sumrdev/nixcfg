@@ -43,6 +43,7 @@
       python3
       pavucontrol
       nautilus
+      neovim
     ];
 
     username = "ms";

@@ -59,6 +59,7 @@
 
   services = {
     envfs.enable = true;
+    udisks2.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -90,6 +91,9 @@
       gcc
       glibc
       goxlr-utility
+      comma
+      openh264
+      firefox
     ];
   };
   nix.settings = {
