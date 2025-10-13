@@ -20,6 +20,8 @@
       set-window-option -g mode-keys vi
       set -g default-terminal "xterm-256color"
       set-option -ga terminal-overrides ",xterm-256color:Tc"
+      set -g status-bg default
+      set -g status-style bg=default
     '';
   };
 }

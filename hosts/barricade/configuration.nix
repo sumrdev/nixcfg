@@ -42,6 +42,7 @@
       neovim
       nil
       emmet-language-server
+      chromium
     ];
   };
 

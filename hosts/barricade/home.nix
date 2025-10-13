@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ../../modules/programs/fish.nix
     ../../modules/programs/git.nix
@@ -23,6 +22,8 @@
 
       vtsls
       prettierd
+      ghostscript
+      neovim
     ];
 
     username = "ms";

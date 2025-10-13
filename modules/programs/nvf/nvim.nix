@@ -5,7 +5,7 @@
   ...
 }: {
   programs.nvf = {
-    enable = true;
+    enable = false;
     # your settings need to go into the settings attribute set
     # most settings are documented in the appendix
     settings = {
