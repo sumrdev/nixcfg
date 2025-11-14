@@ -38,6 +38,7 @@ in
         executable-path = "${getExe git}";
         track-default-bookmark-on-clone = true;
       };
+      revset-aliases."immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())";
       templates = {
         # template for showing diff during a jj describe
         # https://github.com/jj-vcs/jj/issues/1946#issuecomment-2561045057

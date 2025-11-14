@@ -22,6 +22,7 @@
       set-option -ga terminal-overrides ",xterm-256color:Tc"
       set -g status-bg default
       set -g status-style bg=default
+      set -g @kanagawa-theme 'dragon'
     '';
   };
 }

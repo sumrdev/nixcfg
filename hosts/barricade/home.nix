@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules/programs/fish.nix
     ../../modules/programs/git.nix
@@ -21,9 +22,15 @@
       python3
 
       vtsls
+
+      lua
+      vue-language-server
+      vscode-langservers-extracted
       prettierd
       ghostscript
       neovim
+      gemini-cli
+      comma
     ];
 
     username = "ms";

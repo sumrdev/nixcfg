@@ -91,6 +91,15 @@
       "ms"
     ];
   };
+  nix.gc = {
+    automatic = true;
+    # Set the frequency for the garbage collector to run.
+    # Options include "daily", "weekly", or a systemd-style calendar specification.
+    dates = "daily";
+    # These are the arguments passed to 'nix-collect-garbage'.
+    # This achieves your desired 'sudo nix-collect-garbage --delete-older-than 30d'
+    options = "--delete-older-than 7d";
+  };
 
   documentation.man.generateCaches = false;
 }
