@@ -46,6 +46,14 @@ in {
         executable-path = "${getExe git}";
         track-default-bookmark-on-clone = true;
       };
+      tug = [
+        "bookmark"
+        "move"
+        "--from"
+        "heads(::@- & bookmarks())"
+        "--to"
+        "@-"
+      ];
       revset-aliases."immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())";
       templates = {
         # template for showing diff during a jj describe
