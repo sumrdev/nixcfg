@@ -6,7 +6,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
@@ -24,7 +25,7 @@
       ];
     };
     backupFileExtension = "bak";
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
   };
 
   fonts.packages = with pkgs; [
@@ -90,7 +91,6 @@
       gcc
       glibc
       goxlr-utility
-      comma
       openh264
       firefox
     ];

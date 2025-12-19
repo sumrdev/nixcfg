@@ -11,6 +11,7 @@
     ../../modules/programs/nvf/nvim.nix
     ../../modules/programs/tmux.nix
     ../../modules/programs/zoxide.nix
+    ../../modules/programs/comma.nix
     inputs.nvf.homeManagerModules.default
   ];
   home = {
@@ -29,7 +30,6 @@
       ghostscript
       neovim
       gemini-cli
-      comma
     ];
 
     username = "ms";

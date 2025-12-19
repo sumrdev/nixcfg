@@ -1,23 +1,26 @@
 {
-  outputs = inputs @ {nixpkgs, ...}: let
-    mkSystem = host: modules:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules =
-          [
-            {nixpkgs.hostPlatform = "x86_64-linux";}
+  outputs =
+    inputs@{ nixpkgs, ... }:
+    let
+      mkSystem =
+        host: modules:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             ./hosts/${host}/configuration.nix
           ]
           ++ modules;
+        };
+    in
+    {
+      nixosConfigurations = nixpkgs.lib.mapAttrs (name: modules: mkSystem name modules) {
+        blackout = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+        starscream = [ ];
+        barricade = [ ];
+        brawl = [ ];
       };
-  in {
-    nixosConfigurations = nixpkgs.lib.mapAttrs (name: modules: mkSystem name modules) {
-      blackout = [inputs.lanzaboote.nixosModules.lanzaboote];
-      starscream = [];
-      barricade = [];
-      brawl = [];
     };
-  };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {

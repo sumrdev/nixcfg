@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules/programs/hyprlock.nix
     ../../modules/programs/fish.nix
@@ -37,7 +38,6 @@
       gowall
       vesktop
       jujutsu
-      comma
 
       prismlauncher
       tree
