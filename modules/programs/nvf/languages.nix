@@ -20,12 +20,12 @@
     nix = {
       enable = true;
       lsp = {
-        server = "nil";
+        servers = ["nil"];
       };
     };
     python = {
       enable = true;
-      format.type = "ruff";
+      format.type = ["ruff"];
     };
     tailwind.enable = true;
     ts.enable = true;
