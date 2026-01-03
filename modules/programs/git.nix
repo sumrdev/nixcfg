@@ -3,13 +3,12 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   programs.git = {
     enable = true;
-    userEmail = "git@sumr.dk";
-    userName = "sumrdev";
-    extraConfig = {
+    settings.user = {
+      name = "sumrdev";
+      email = "git@sumr.dk";
       pull.rebase = true;
       init.defaultBranch = "main";
     };

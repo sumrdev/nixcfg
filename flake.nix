@@ -33,6 +33,10 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -45,36 +49,37 @@
     spicetify-nix,
     vicinae,
     nvf,
+    lanzaboote,
     self,
-  } @ inputs: let
-    system = "x86_64-linux";
-  in {
+  } @ inputs: 
+  {
     nixosConfigurations = {
       blackout = nixpkgs.lib.nixosSystem {
-        inherit system;
         modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
           ./hosts/blackout/configuration.nix
+          lanzaboote.nixosModules.lanzaboote
         ];
         specialArgs = {
-          inherit system inputs;
+          inherit inputs;
         };
       };
       starscream = nixpkgs.lib.nixosSystem {
-        inherit system;
         modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
           ./hosts/starscream/configuration.nix
         ];
         specialArgs = {
-          inherit system inputs;
+          inherit inputs;
         };
       };
       barricade = nixpkgs.lib.nixosSystem {
-        inherit system;
         modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
           ./hosts/barricade/configuration.nix
         ];
         specialArgs = {
-          inherit system inputs;
+          inherit inputs;
         };
       };
     };

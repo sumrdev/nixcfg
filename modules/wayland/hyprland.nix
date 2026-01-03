@@ -13,8 +13,8 @@
       "$discord" = "vesktop";
       "$runner" = "vicinae";
       monitor = [
-        "DP-3, 1920x1080@240,0x0,1"
-        "HDMI-A-1, 1920x1080@240, -1080x-200, 1, transform, 1"
+        "DP-2, 1920x1080@360,0x0,1"
+        "HDMI-A-1, 1920x1080@240, 1080x-200, 1, transform, 3"
       ];
       general = {
         gaps_in = 0;

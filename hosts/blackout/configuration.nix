@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+# Edit this configuration file to define what should be installed onblacy
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
@@ -9,16 +9,19 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
+   ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
 
-  boot.loader.grub = {
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot"; 
+  boot.loader.systemd-boot.configurationLimit = 10;
+
+  boot.lanzaboote = {
     enable = true;
-    efiSupport = true;
-    device = "nodev";
-    useOSProber = true;
+    pkiBundle = "/var/lib/sbctl";
   };
 
   home-manager = {
@@ -36,8 +39,6 @@
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-cove
   ];
-
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
     hostName = "blackout";
@@ -92,11 +93,11 @@
       NIXOS_OZONE_WL = 1;
     };
     systemPackages = with pkgs; [
-      inputs.pinix.packages.${pkgs.system}.default
-      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      inputs.rose-pine-hyprcursor.packages.${stdenv.hostPlatform.system}.default
       gcc
       glibc
       goxlr-utility
+      sbctl
     ];
   };
   nix.settings = {

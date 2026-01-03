@@ -41,8 +41,11 @@
       tree
 
       python3
+      neovim
       pavucontrol
       nautilus
+      yaak
+      openvpn
     ];
 
     username = "ms";
@@ -51,8 +54,8 @@
     stateVersion = "24.11";
   };
   wayland.windowManager.hyprland.settings.monitor = lib.mkForce [
-    "DP-2, 1920x1080@240,0x0,1"
-    "HDMI-A-1, 1920x1080@240, -1080x-200, 1, transform, 1"
+    "DP-2, 2560x1440@360,0x0,1"
+    "HDMI-A-1, 1920x1080@240, 2560x-200, 1, transform, 3"
   ];
 
   wayland.windowManager.hyprland.settings.input.kb_options = lib.mkForce "grp:alt_shift_toggle";
