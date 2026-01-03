@@ -42,13 +42,14 @@
       exec-once = [
         "waybar"
         "hyprpaper"
+        "vicinae server"
       ];
       bind = [
         "$mod, B, exec, $browser"
         "$mod, T, exec, $terminal"
         "$mod, D, exec, $discord"
         "$mod, Q, exec, kitty"
-        "$mod, R, exec, $runner"
+        "$mod, R, exec, vicinae toggle"
         "$mod, F, fullscreen"
         "$mod, C, killactive"
         "$mod, M, exit"
