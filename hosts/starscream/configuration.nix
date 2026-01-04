@@ -86,7 +86,6 @@
       NIXOS_OZONE_WL = 1;
     };
     systemPackages = with pkgs; [
-      inputs.pinix.packages.${pkgs.system}.default
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
       gcc
       glibc
@@ -106,5 +105,5 @@
       "ms"
     ];
   };
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }

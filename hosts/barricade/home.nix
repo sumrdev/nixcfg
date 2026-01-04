@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ../../modules/programs/fish.nix
     ../../modules/programs/git.nix
@@ -36,7 +35,7 @@
     username = "ms";
     homeDirectory = "/home/ms";
 
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
   programs = {
     fzf = {

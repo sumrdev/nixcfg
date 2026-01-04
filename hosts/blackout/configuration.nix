@@ -78,6 +78,7 @@
 
   programs = {
     hyprland.enable = true;
+    niri.enable = true;
     fish.enable = true;
     nix-ld.enable = true;
     direnv = {

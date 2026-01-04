@@ -45,7 +45,7 @@
     username = "ms";
     homeDirectory = "/home/ms";
 
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
   services = {
     vicinae.enable = true;

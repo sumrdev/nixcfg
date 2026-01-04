@@ -17,6 +17,7 @@
     ../../modules/programs/waybar/waybar.nix
     ../../modules/programs/zen-browser.nix
     ../../modules/programs/zoxide.nix
+    ../../modules/programs/niri.nix
     ../../modules/services/hyprpaper.nix
     ../../modules/wayland/hyprland.nix
     inputs.zen-browser.homeModules.twilight
@@ -34,7 +35,7 @@
       protonvpn-gui
       ripgrep
       gowall
-      vesktop
+      # vesktop
       jujutsu
       comma
       roslyn-ls

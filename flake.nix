@@ -1,4 +1,22 @@
 {
+  outputs = inputs @ {nixpkgs, ...}: let
+    mkSystem = host: modules:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules =
+          [
+            {nixpkgs.hostPlatform = "x86_64-linux";}
+            ./hosts/${host}/configuration.nix
+          ]
+          ++ modules;
+      };
+  in {
+    nixosConfigurations = nixpkgs.lib.mapAttrs (name: modules: mkSystem name modules) {
+      blackout = [inputs.lanzaboote.nixosModules.lanzaboote];
+      starscream = [];
+      barricade = [];
+    };
+  };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
@@ -17,10 +35,6 @@
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pinix = {
-      url = "github:remi-dupre/pinix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,52 +50,6 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = {
-    nixpkgs,
-    home-manager,
-    nixos-wsl,
-    zen-browser,
-    rose-pine-hyprcursor,
-    pinix,
-    spicetify-nix,
-    vicinae,
-    nvf,
-    lanzaboote,
-    self,
-  } @ inputs: 
-  {
-    nixosConfigurations = {
-      blackout = nixpkgs.lib.nixosSystem {
-        modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-          ./hosts/blackout/configuration.nix
-          lanzaboote.nixosModules.lanzaboote
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
-      };
-      starscream = nixpkgs.lib.nixosSystem {
-        modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-          ./hosts/starscream/configuration.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
-      };
-      barricade = nixpkgs.lib.nixosSystem {
-        modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-          ./hosts/barricade/configuration.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
-      };
     };
   };
 }

@@ -8,8 +8,7 @@
   outputs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.nixos-wsl.nixosModules.default
@@ -21,7 +20,7 @@
 
   time.timeZone = "Europe/Copenhagen";
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
   services.envfs.enable = false;
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 524288;
@@ -36,7 +35,6 @@
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
-      inputs.pinix.packages.${pkgs.system}.default
       gcc
       dotnet-sdk_8
       neovim
@@ -53,14 +51,14 @@
     backupFileExtension = "bak";
 
     users.ms = {
-      imports = [ ./home.nix ];
+      imports = [./home.nix];
     };
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
   };
 
   users.users.ms = {
     shell = pkgs.fish;
-    extraGroups = [ "docker" ];
+    extraGroups = ["docker"];
   };
 
   virtualisation.docker = {
@@ -73,7 +71,7 @@
   programs = {
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [ libsecret ];
+      libraries = with pkgs; [libsecret];
     };
     fish.enable = true;
     direnv = {
