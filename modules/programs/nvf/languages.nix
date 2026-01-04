@@ -12,7 +12,12 @@
     assembly.enable = true;
     bash.enable = true;
     clang.enable = true;
-    csharp.enable = false;
+    csharp = {
+      enable = false;
+      lsp = {
+        servers = ["roslyn_ls"];
+      };
+    };
     css.enable = true;
     html.enable = true;
     lua.enable = true;

@@ -19,6 +19,13 @@
       desc = "Save file and quit";
     }
     {
+      key = "<leader>w";
+      mode = ["n"];
+      action = ":w<CR>";
+      silent = true;
+      desc = "Save file";
+    }
+    {
       key = "<leader>fw";
       mode = ["n"];
       action = ":Telescope live_grep<CR>";

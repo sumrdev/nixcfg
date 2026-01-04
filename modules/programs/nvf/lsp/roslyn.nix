@@ -13,6 +13,7 @@ in {
     root_markers = [
       ".csproj"
       ".sln"
+      ".git"
     ];
     cmd = [
       (lib.getExe pkgs.roslyn-ls)

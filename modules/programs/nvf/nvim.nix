@@ -6,11 +6,9 @@
 }: {
   programs.nvf = {
     enable = true;
-    # your settings need to go into the settings attribute set
-    # most settings are documented in the appendix
     settings = {
       imports = [
-        ./lsp/roslyn.nix
+        # ./lsp/roslyn.nix
         ./lsp/vtsls.nix
         ./languages.nix
         ./keymaps.nix
@@ -27,7 +25,13 @@
           formatOnSave = true;
           lightbulb.enable = true;
           trouble.enable = true;
-          # lspSignature.enable = true;
+          mappings = {
+            codeAction = "ca";
+            goToDeclaration = "gD";
+            goToDefinition = "gd";
+            listReferences = "gr";
+            renameSymbol = "ra";
+          };
         };
         theme = {
           enable = true;
@@ -59,7 +63,13 @@
           autotagHtml = true;
         };
         utility.oil-nvim.enable = true;
-        telescope.enable = true;
+        telescope = {
+          setupOpts = {
+            defaults.layout_config.horizontal.prompt_position = "bottom";
+            defaults.sorting_strategy = "descending";
+          };
+          enable = true;
+        };
         git = {
           enable = true;
           gitsigns = {
@@ -67,6 +77,12 @@
             codeActions.enable = false;
           };
           vim-fugitive.enable = true;
+        };
+        extraPlugins = with pkgs.vimPlugins; {
+          roslyn = {
+            package = roslyn-nvim;
+            setup = "require('roslyn').setup({})";
+          };
         };
       };
     };

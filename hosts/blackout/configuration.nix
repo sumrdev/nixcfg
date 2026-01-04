@@ -6,17 +6,16 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
-   ./hardware-configuration.nix
+    ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot"; 
+  boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.systemd-boot.configurationLimit = 10;
 
   boot.lanzaboote = {
@@ -33,7 +32,7 @@
       ];
     };
     backupFileExtension = "bak";
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
   };
 
   fonts.packages = with pkgs; [
@@ -85,6 +84,12 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true;
+    };
   };
 
   environment = {
@@ -98,6 +103,7 @@
       glibc
       goxlr-utility
       sbctl
+      steam-run
     ];
   };
   nix.settings = {

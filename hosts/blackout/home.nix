@@ -37,6 +37,8 @@
       vesktop
       jujutsu
       comma
+      roslyn-ls
+      dotnet-sdk_8
 
       tree
 
