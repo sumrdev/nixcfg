@@ -78,8 +78,10 @@
 
   programs = {
     hyprland.enable = true;
-    niri.enable = true;
-    fish.enable = true;
+    fish = {
+      enable = true;
+      useBabelfish = true;
+    };
     nix-ld.enable = true;
     direnv = {
       enable = true;
