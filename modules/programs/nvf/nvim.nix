@@ -14,9 +14,15 @@
         ./keymaps.nix
       ];
       vim = {
+        dashboard = {
+          alpha = {
+            enable = true;
+            theme = "theta";
+          };
+        };
         viAlias = false;
         vimAlias = true;
-        # autopairs.nvim-autopairs.enable = true;
+        autopairs.nvim-autopairs.enable = true;
         autocomplete.blink-cmp = {
           enable = true;
         };
@@ -57,6 +63,10 @@
         };
         comments.comment-nvim = {
           enable = true;
+          mappings = {
+            toggleCurrentLine = "<leader>/";
+            toggleSelectedLine = "<leader>/";
+          };
         };
         treesitter = {
           enable = true;
