@@ -27,6 +27,7 @@ in {
       "typescriptreact"
       "vue"
     ];
+    root_markers = ["tsconfig.json" "jsconfig.json" "package.json" ".git"];
 
     cmd = [
       "${lib.getExe pkgs.vtsls}"

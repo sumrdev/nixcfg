@@ -17,7 +17,6 @@
     ../../modules/programs/waybar/waybar.nix
     ../../modules/programs/zen-browser.nix
     ../../modules/programs/zoxide.nix
-    ../../modules/programs/niri.nix
     ../../modules/services/hyprpaper.nix
     ../../modules/wayland/hyprland.nix
     inputs.zen-browser.homeModules.twilight
@@ -33,14 +32,14 @@
       hyprpicker
       fastfetch
       protonvpn-gui
+      wireguard-tools
       ripgrep
       gowall
-      # vesktop
+      vesktop
       jujutsu
       comma
-      roslyn-ls
-      dotnet-sdk_8
 
+      prismlauncher
       tree
 
       python3
@@ -65,13 +64,6 @@
   wayland.windowManager.hyprland.settings.input.kb_options = lib.mkForce "grp:alt_shift_toggle";
 
   services = {
-    hyprpaper.settings.preload = lib.mkForce [
-      "/home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
-    ];
-    hyprpaper.settings.wallpaper = lib.mkForce [
-      "DP-2, /home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
-      "HDMI-A-1, /home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
-    ];
     vicinae.enable = true;
   };
   programs = {

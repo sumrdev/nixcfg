@@ -11,6 +11,11 @@
       set EDITOR nvim
       set -e WAYLAND_DISPLAY
     '';
+    shellAbbrs = {
+      j = "jj";
+      jrt = "jj rebase -d 'trunk()' && jj simplify-parents";
+      jri = "jj rebase -A 'trunk()' -B 'merge' -r";
+    };
     functions = {
       fish_prompt = {
         description = "Custom prompt showing the first three letters of the current directory, followed by a semicolon.";
@@ -25,6 +30,10 @@
       };
     };
     plugins = [
+      {
+        name = "jj";
+        src = inputs.fish-plugin-jj;
+      }
       {
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;

@@ -44,12 +44,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      url = "github:NotAShelf/nvf";
+      url = "path:/home/ms/coding/nvf";
+      # url = "github:/NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fish-plugin-jj = {
+      url = "github:TheColorman/plugin-jj";
+      flake = false;
     };
   };
 }

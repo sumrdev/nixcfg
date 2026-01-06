@@ -3,12 +3,10 @@
   inputs,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) getExe;
   inherit (pkgs) openssh git;
-in
-{
+in {
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -29,6 +27,16 @@ in
         backend = "ssh";
         key = "~/.ssh/id_ed25519.pub";
         backends.ssh.program = "${openssh}/bin/ssh-keygen";
+      };
+      aliases = {
+        tug = [
+          "bookmark"
+          "move"
+          "--from"
+          "heads(::@- & bookmarks())"
+          "--to"
+          "@-"
+        ];
       };
       git = {
         sign-on-push = true;
