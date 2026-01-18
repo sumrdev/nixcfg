@@ -21,9 +21,15 @@
         description = "Custom prompt showing the first three letters of the current directory, followed by a semicolon.";
 
         body = ''
-          set current_dir (basename $PWD)
+          set -l current_dir (basename $PWD)
+          set -l prompt_prefix (echo $current_dir | string sub -l 3)
 
-          set prompt_prefix (echo $current_dir | string sub -l 3)
+          # Check if we are in an SSH session
+          if set -q SSH_TTY
+              # Get the hostname (short version)
+              set -l host (hostname -s)
+              echo -n (set_color yellow)"($host) "
+          end
 
           echo -n (set_color green)$prompt_prefix(set_color normal)'; '
         '';
