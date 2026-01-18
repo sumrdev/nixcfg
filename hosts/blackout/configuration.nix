@@ -9,18 +9,22 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/services/tailscale.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = lib.mkForce false;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+      systemd-boot.configurationLimit = 10;
+    };
 
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.loader.systemd-boot.configurationLimit = 10;
-
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/var/lib/sbctl";
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
   };
 
   home-manager = {

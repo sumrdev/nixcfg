@@ -10,7 +10,6 @@
     ../../modules/programs/nvf/nvim.nix
     ../../modules/programs/tmux.nix
     ../../modules/programs/zoxide.nix
-    ../../modules/services/tailscale.nix
     inputs.nvf.homeManagerModules.default
   ];
   home = {

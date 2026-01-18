@@ -1,11 +1,11 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/services/tailscale.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
