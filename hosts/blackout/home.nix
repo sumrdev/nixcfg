@@ -18,6 +18,7 @@
     ../../modules/programs/zen-browser.nix
     ../../modules/programs/zoxide.nix
     ../../modules/services/hyprpaper.nix
+    ../../modules/services/tailscale.nix
     ../../modules/wayland/hyprland.nix
     inputs.zen-browser.homeModules.twilight
     inputs.spicetify-nix.homeManagerModules.default
