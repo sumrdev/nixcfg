@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "fish-plugin-jj": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765964314,
+        "narHash": "sha256-WCr3fw/vm3chOTu61zjBuXyn/q862CDZvZEQ5fMRXd8=",
+        "owner": "TheColorman",
+        "repo": "plugin-jj",
+        "rev": "adf623f219efae7159eefb0d7c29959da9e8fb9d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheColorman",
+        "repo": "plugin-jj",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -71,11 +87,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759362264,
-        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
+        "lastModified": 1760948891,
+        "narHash": "sha256-TmWcdiUUaWk8J4lpjzu4gCGxWY6/Ok7mOK4fIFfBuU4=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
+        "rev": "864599284fc7c0ba6357ed89ed5e2cd5040f0c04",
         "type": "github"
       },
       "original": {
@@ -227,6 +243,27 @@
         "type": "github"
       }
     },
+    "ndg": {
+      "inputs": {
+        "nixpkgs": [
+          "nvf",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765720983,
+        "narHash": "sha256-tWtukpABmux6EC/FuCJEgA1kmRjcRPtED44N+GGPq+4=",
+        "owner": "feel-co",
+        "repo": "ndg",
+        "rev": "f399ace8bb8e1f705dd8942b24d207aa4d75c936",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "ndg",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -270,23 +307,21 @@
         "flake-compat": "flake-compat_3",
         "flake-parts": "flake-parts",
         "mnw": "mnw",
+        "ndg": "ndg",
         "nixpkgs": [
           "nixpkgs"
         ],
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1761486540,
-        "narHash": "sha256-O0VNqERaZ1H+4P3XwHNd8wVCqUcGtMPJT1z4cJodRFc=",
-        "owner": "NotAShelf",
-        "repo": "nvf",
-        "rev": "4b904de36157035fa3dddf0312a4242e5d0d9bd0",
-        "type": "github"
+        "lastModified": 1767900363,
+        "narHash": "sha256-MurwaO5xWGCFUDSx7SiMEiPZCp0KZXxvmei+reIJmfI=",
+        "path": "/home/ms/coding/nvf",
+        "type": "path"
       },
       "original": {
-        "owner": "NotAShelf",
-        "repo": "nvf",
-        "type": "github"
+        "path": "/home/ms/coding/nvf",
+        "type": "path"
       }
     },
     "pre-commit": {
@@ -314,6 +349,7 @@
     },
     "root": {
       "inputs": {
+        "fish-plugin-jj": "fish-plugin-jj",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixos-wsl": "nixos-wsl",
