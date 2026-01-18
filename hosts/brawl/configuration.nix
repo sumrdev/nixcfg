@@ -9,11 +9,16 @@
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-  boot.initrd.luks.devices."luks-d94cc1fb-71ee-4305-ada2-9409d4e1cacf".device = "/dev/disk/by-uuid/d94cc1fb-71ee-4305-ada2-9409d4e1cacf";
+    initrd.luks.devices."luks-d94cc1fb-71ee-4305-ada2-9409d4e1cacf".device = "/dev/disk/by-uuid/d94cc1fb-71ee-4305-ada2-9409d4e1cacf";
+  };
 
   home-manager = {
     useGlobalPkgs = true;
@@ -26,13 +31,77 @@
     backupFileExtension = "bak";
     extraSpecialArgs = {inherit inputs;};
   };
+  systemd.services.proton-port-forward = {
+    description = "Maintain Proton VPN Port Forwarding";
+    after = ["network-online.target" "wireguard-wg0.service"];
+    wants = ["network-online.target" "wireguard-wg0.service"];
+    wantedBy = ["multi-user.target"];
 
+    path = with pkgs; [
+      libnatpmp
+      bash
+      coreutils
+    ];
+
+    script = ''
+      echo "Starting Proton Port Forwarding loop..."
+      while true; do
+        date
+        # Using your working logic:
+        # -a 1 0 [proto] [lifetime] -g [gateway]
+        natpmpc -a 1 0 udp 60 -g 10.2.0.1 && \
+        natpmpc -a 1 0 tcp 60 -g 10.2.0.1 || \
+        { echo -e "ERROR with natpmpc command" ; break ; }
+
+        sleep 45
+      done
+    '';
+
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      Restart = "always";
+      RestartSec = "20";
+    };
+  };
   networking = {
+    nat.enable = true;
+    firewall.allowedUDPPorts = [51820];
+
+    wireguard.interfaces = {
+      wg0 = {
+        ips = ["10.2.0.2/32"];
+        privateKeyFile = "/var/lib/secrets/wireguard";
+
+        postSetup = ''
+          ${pkgs.openresolv}/bin/resolvconf -a wg0 <<EOF
+          nameserver 10.2.0.1
+          EOF
+
+          ${pkgs.iproute2}/bin/ip route add 10.0.0.0/24 dev enp0s25 table main || true
+          ${pkgs.iproute2}/bin/ip route add 149.88.109.33 via 10.0.0.1 dev enp0s25 || true
+        '';
+
+        # Cleanup DNS on shutdown
+        postShutdown = ''
+          ${pkgs.openresolv}/bin/resolvconf -d wg0
+        '';
+
+        peers = [
+          {
+            publicKey = "fJt+VGA6v6VoXWZ0pxf6XQWZFUH/5A4tPLxMMWasHzI=";
+            allowedIPs = ["0.0.0.0/0" "::/0"];
+            endpoint = "149.88.109.33:51820";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
+    };
     hostName = "brawl";
     networkmanager.enable = true;
     firewall = {
       enable = false;
-      checkReversePath = false;
+      checkReversePath = "loose";
     };
   };
 
@@ -83,6 +152,7 @@
       gcc
       glibc
       sbctl
+      libnatpmp
     ];
   };
   nix.settings = {
