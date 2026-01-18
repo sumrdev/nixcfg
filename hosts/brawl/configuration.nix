@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -16,8 +17,29 @@
     };
 
     kernel.sysctl."net.ipv4.ip_forward" = 1;
+    initrd = {
+      luks.devices."luks-d94cc1fb-71ee-4305-ada2-9409d4e1cacf".device = "/dev/disk/by-uuid/d94cc1fb-71ee-4305-ada2-9409d4e1cacf";
 
-    initrd.luks.devices."luks-d94cc1fb-71ee-4305-ada2-9409d4e1cacf".device = "/dev/disk/by-uuid/d94cc1fb-71ee-4305-ada2-9409d4e1cacf";
+      availableKernelModules = ["r8169" "e1000e"];
+
+      secrets = {
+        "/etc/ssh/ssh_host_ed25519_key" = lib.mkForce "/boot/initrd-ssh/ssh_host_ed25519_key";
+      };
+      network = {
+        enable = true;
+        udhcpc.enable = true;
+        ssh = {
+          enable = true;
+          port = 2222;
+          shell = "/bin/cryptsetup-askpass";
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL2YjubFtWoAA7eHiaRrZ42MAGjWpIQNbNk8nkvRR/SA ms@blackout"
+          ];
+          # Path to the host keys (must not be encrypted!)
+          hostKeys = ["/etc/ssh/ssh_host_ed25519_key"];
+        };
+      };
+    };
   };
 
   home-manager = {
