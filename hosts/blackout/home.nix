@@ -53,7 +53,7 @@
     username = "ms";
     homeDirectory = "/home/ms";
 
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
   wayland.windowManager.hyprland.settings.monitor = lib.mkForce [
     "DP-2, 2560x1440@360,0x0,1"
