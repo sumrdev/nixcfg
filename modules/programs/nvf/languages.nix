@@ -41,7 +41,6 @@
       tailwind.enable = true;
       ts = {
         enable = true;
-        extraVueSupport = true;
         lsp = {
           servers = ["ts_ls"];
         };

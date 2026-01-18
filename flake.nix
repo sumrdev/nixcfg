@@ -15,6 +15,7 @@
       blackout = [inputs.lanzaboote.nixosModules.lanzaboote];
       starscream = [];
       barricade = [];
+      brawl = [];
     };
   };
   inputs = {
@@ -44,8 +45,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      url = "path:/home/ms/coding/nvf";
-      # url = "github:/NotAShelf/nvf";
+      # url = "path:/home/ms/coding/nvf";
+      url = "github:/NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {

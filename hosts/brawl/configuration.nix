@@ -10,6 +10,11 @@
   ];
   nixpkgs.config.allowUnfree = true;
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.initrd.luks.devices."luks-d94cc1fb-71ee-4305-ada2-9409d4e1cacf".device = "/dev/disk/by-uuid/d94cc1fb-71ee-4305-ada2-9409d4e1cacf";
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -53,6 +58,7 @@
   services = {
     envfs.enable = true;
     tailscale.enable = true;
+    openssh.enable = true;
   };
 
   programs = {
