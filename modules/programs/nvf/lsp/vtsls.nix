@@ -1,19 +1,17 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   inherit (lib.generators) mkLuaInline;
 in {
   vim.lsp.servers.vtsls = {
     enable = true;
-
-    capabilities = mkLuaInline "capabilities";
     on_attach = mkLuaInline ''
-      function(client)
-        if vim.bo.filetype == 'vue' then
-          client.server_capabilities.semanticTokensProvider.full = false
+      function(client, bufnr)
+        -- Disable semantic tokens for Vue files to prevent highlighting conflicts
+        if vim.bo[bufnr].filetype == 'vue' then
+          client.server_capabilities.semanticTokensProvider = nil
         else
           client.server_capabilities.semanticTokensProvider.full = true
         end
@@ -21,28 +19,23 @@ in {
     '';
 
     filetypes = [
-      "typescript"
       "javascript"
       "javascriptreact"
+      "javascript.jsx"
+      "typescript"
       "typescriptreact"
+      "typescript.tsx"
       "vue"
     ];
     root_markers = ["tsconfig.json" "jsconfig.json" "package.json" ".git"];
 
     cmd = [
-      "${lib.getExe pkgs.vtsls}"
+      (lib.getExe pkgs.vtsls)
       "--stdio"
     ];
 
     settings = {
-      typescript = {
-        updateImportsOnFileMove.enabled = "always";
-        tsserver.maxTsServerMemory = 8192;
-      };
       vtsls = {
-        enableMoveToFileCodeAction = true;
-        experimental.completion.enableServerSideFuzzyMatch = true;
-
         tsserver = {
           globalPlugins = [
             {

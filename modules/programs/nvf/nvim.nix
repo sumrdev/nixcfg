@@ -8,8 +8,7 @@
     enable = true;
     settings = {
       imports = [
-        # ./lsp/roslyn.nix
-        # ./lsp/vtsls.nix
+        ./lsp/vtsls.nix
         ./languages.nix
         ./keymaps.nix
       ];

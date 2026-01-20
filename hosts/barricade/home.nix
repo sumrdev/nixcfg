@@ -19,22 +19,16 @@
       ripgrep
       tree
       python3
-
-      vtsls
-
-      lua
-      vue-language-server
-      vscode-langservers-extracted
-      prettierd
       ghostscript
-      neovim
-      gemini-cli
     ];
 
     username = "ms";
     homeDirectory = "/home/ms";
 
     stateVersion = "26.05";
+    sessionVariables = {
+      DOTNET_ROOT = "${pkgs.dotnet-sdk_10}";
+    };
   };
   programs = {
     fzf = {

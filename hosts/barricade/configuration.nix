@@ -13,6 +13,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nixos-wsl.nixosModules.default
     ../../modules/programs/comma.nix
+    ../../modules/services/cups.nix
   ];
 
   wsl.enable = true;
@@ -27,20 +28,12 @@
     "fs.inotify.max_user_watches" = 524288;
   };
 
-  environment.sessionVariables = {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk}/share/dotnet";
-  };
-
   environment = {
     variables = {
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
       gcc
-      dotnet-sdk_8
-      neovim
-      nil
-      emmet-language-server
       chromium
     ];
   };
@@ -90,13 +83,47 @@
       "ms"
     ];
   };
+
+  security.pki.certificates = [
+    ''
+      -----BEGIN CERTIFICATE-----
+      MIIFrzCCA5egAwIBAgIQTFiWIIeJd6FO4uAMsU5TzjANBgkqhkiG9w0BAQ0FADBe
+      MRMwEQYKCZImiZPyLGQBGRYDY29tMR8wHQYKCZImiZPyLGQBGRYPdXh2dGVjaG5v
+      bG9naWVzMRQwEgYKCZImiZPyLGQBGRYEY29ycDEQMA4GA1UEAxMHY2Etcm9vdDAe
+      Fw0yNTAxMTUxMTQwMzVaFw0zMDAxMTUxMTUwMzNaMF4xEzARBgoJkiaJk/IsZAEZ
+      FgNjb20xHzAdBgoJkiaJk/IsZAEZFg91eHZ0ZWNobm9sb2dpZXMxFDASBgoJkiaJ
+      k/IsZAEZFgRjb3JwMRAwDgYDVQQDEwdjYS1yb290MIICIjANBgkqhkiG9w0BAQEF
+      AAOCAg8AMIICCgKCAgEAwVaue5dMnRaPIdToSXTRcdCRi0YfRDWJim0SxLrS7yOs
+      IXmoTGA3/KFS5AJmABJlUjP86uYwZANIjqkd7RCiYZvMxsQgZedvoWWO13oL3U5H
+      60N6NiD8vyPHCPZb7/K4769bA657bemijG75j1VP/PYYSVFkLLUX7koQUMsq9P+Y
+      uyPkpI6LrvAZnXcr/erbT0fyI/LkrrRyaH7zROP4SRTXzoUGOFDQnDG55MOP1en9
+      VaRfvB8bVMfHJNi3JWMWwSaWLB2fECmbZsAF5+Y5g4s6xa9KX6W+JOplNSKbNgEg
+      a0GJ/aWCboiXP4609EFGeBV2NIC/XmxuFHZ51u8ybwf3jjfLGwnENYwxlNo2xnTi
+      Ob7z0b17uD1dITMYEof2r8CtBe5eahY5maXphXW3JEMmzazpl8fGwo6Ka1TdW2aP
+      y6M63Pmha5puZVGzyAj7u1KUQ0rzIqebQGOzT08Uj9/9I1SFYoMmHNP+o1+FOs58
+      8UuodFwUe6CYdaijlP+2r4ZcM00MtuVvwoD7hL3S48mnetOk6Mpyd0wl9J2lcE8q
+      8mDOziUFJjkzyxUII1B5vLVlg9Iik0wZCzYPfj9lUwkW9DpFDhQgvTrnJlc8d4cx
+      gU6AaMqy8unW916pGvixW/EhhicUwTcMYEeQfCf8V1vTEGWzayJFuzvWntjIxoEC
+      AwEAAaNpMGcwEwYJKwYBBAGCNxQCBAYeBABDAEEwDgYDVR0PAQH/BAQDAgGGMA8G
+      A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFMXofzuFCdOgSLG/XtayJR3Z0lkZMBAG
+      CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBDQUAA4ICAQCXpflC/B7o3SgqwQET
+      0B8CPeiKcRZCbeD0NrVErXNxVLZojZstRhr5hE1X3IQ3VbTS6+um/OHNghg5a4V+
+      0tdZa76x3YpT+RxIHxGx//F5htVyQ3rM5pzfAA5kkjDah6qFRHv9VsS9bH6bs79O
+      6apiUIkIHikBjFcU4uy50lZHsz37CHwDo2nZBIeX4lU/4ZodISQAwnw9/6tVCxEX
+      k/hu4Na77wrXKLjml8uE7cswwpQItG7BjmYv7FAZyTxsBWJd7qnYqhfbtk+zzkcO
+      gcNW1JVSFTuoJsno15Yuac1EzRl9gq2W0vIwFq2G0Op+jTkhRGWPl4NrVD6fkccT
+      EVLa9+HxnE/6yS0osv1Fmm8IbY9MZCDO7JX5w/HWoS5upHHJDjg5SEc7VLRYB4pE
+      jiVo7qN/FIswmBgIRwm3gNXI/uf4bdE6xQAHI6M02U2Gv/JSSO0NB1XgLxek21gQ
+      2/AxGGA1eV6bZZt3xNTKKJfZNwDJzq+tVQyNE2HkbA4YZp1Fsfv3JVOPGE2HB1N5
+      QTCgUS0arjXT7uwCLpvx7dYsa0DdzaRL6IZntaatxt1YYYvqLZvaHp9BBUyA+bGJ
+      9POicqYMmf41NVRqijyf3PhlRjiWV5VoWHvgGnBQJTNuIc5p05ACQL9kLPfloEm0
+      vuLNOyzAYQ2MGny1Uj/sBwd0Vw==
+      -----END CERTIFICATE-----
+    ''
+  ];
   nix.gc = {
     automatic = true;
-    # Set the frequency for the garbage collector to run.
-    # Options include "daily", "weekly", or a systemd-style calendar specification.
     dates = "daily";
-    # These are the arguments passed to 'nix-collect-garbage'.
-    # This achieves your desired 'sudo nix-collect-garbage --delete-older-than 30d'
     options = "--delete-older-than 7d";
   };
 

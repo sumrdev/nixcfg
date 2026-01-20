@@ -7,7 +7,7 @@
   vim = {
     extraPackages = [
       pkgs.roslyn-ls
-      pkgs.dotnet-sdk
+      pkgs.dotnet-sdk_10
     ];
     languages = {
       enableExtraDiagnostics = true;

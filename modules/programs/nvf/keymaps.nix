@@ -40,18 +40,25 @@
       desc = "Telescope find errors";
     }
     {
-      key = "<leader>/";
+      key = "<leader>fr";
       mode = ["n"];
-      action = "gcc";
-      desc = "Comment line";
+      action = ":Telescope lsp_references<CR>";
+      silent = true;
+      desc = "Telescope find references";
     }
-
-    {
-      key = "<leader>/";
-      mode = ["v"];
-      action = "gc";
-      desc = "Comment/uncomment selection";
-    }
+    # {
+    #   key = "<leader>/";
+    #   mode = ["n"];
+    #   action = "gcc";
+    #   desc = "Comment line";
+    # }
+    #
+    # {
+    #   key = "<leader>/";
+    #   mode = ["v"];
+    #   action = "gc";
+    #   desc = "Comment/uncomment selection";
+    # }
     {
       key = "<leader>le";
       mode = ["n"];
