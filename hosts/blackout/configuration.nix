@@ -10,6 +10,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/services/tailscale.nix
+    ../../modules/programs/comma.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
@@ -116,15 +117,22 @@
       steam-run
     ];
   };
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    trusted-users = [
-      "root"
-      "ms"
-    ];
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "ms"
+      ];
+    };
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
   };
   system.stateVersion = "25.11"; # Did you read the comment?
 }

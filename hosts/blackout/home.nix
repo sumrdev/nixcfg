@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ../../modules/programs/hyprlock.nix
     ../../modules/programs/fish.nix
