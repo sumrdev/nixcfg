@@ -25,7 +25,6 @@
         };
       };
       css.enable = true;
-      html.enable = true;
       lua.enable = true;
       markdown.enable = true;
       nix = {
@@ -39,6 +38,10 @@
         format.type = ["ruff"];
       };
       tailwind.enable = true;
+      html = {
+        enable = true;
+        lsp.servers = ["emmet-ls"];
+      };
       ts = {
         enable = true;
         lsp = {

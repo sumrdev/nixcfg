@@ -19,6 +19,7 @@
   wsl.enable = true;
   wsl.defaultUser = "ms";
   networking.hostName = "barricade";
+  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Europe/Copenhagen";
 
@@ -35,6 +36,8 @@
     systemPackages = with pkgs; [
       gcc
       chromium
+      kubectl
+      codex
     ];
   };
 
@@ -67,7 +70,10 @@
       enable = true;
       libraries = with pkgs; [libsecret];
     };
-    fish.enable = true;
+    fish = {
+      enable = true;
+      useBabelfish = true;
+    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -118,6 +124,30 @@
       QTCgUS0arjXT7uwCLpvx7dYsa0DdzaRL6IZntaatxt1YYYvqLZvaHp9BBUyA+bGJ
       9POicqYMmf41NVRqijyf3PhlRjiWV5VoWHvgGnBQJTNuIc5p05ACQL9kLPfloEm0
       vuLNOyzAYQ2MGny1Uj/sBwd0Vw==
+      -----END CERTIFICATE-----
+    ''
+    ''
+      -----BEGIN CERTIFICATE-----
+      MIIDtzCCAp+gAwIBAgIIM3DVmn0tkpYwDQYJKoZIhvcNAQELBQAwQjEoMCYGA1UE
+      AwwfVW5pRmkgU1NMIENlcnRpZmljYXRlIEF1dGhvcml0eTEWMBQGA1UECgwNVWJp
+      cXVpdGkgSW5jLjAeFw0yNDEwMDExNjExMTFaFw0zNDA5MjkxNjExMTFaMEIxKDAm
+      BgNVBAMMH1VuaUZpIFNTTCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkxFjAUBgNVBAoM
+      DVViaXF1aXRpIEluYy4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCW
+      O2kjCIq5Tou+6xSkc95DZyHwRTa8rJCsWIJe642GgqBffPhfjv2Fw5NyZB3nlPq1
+      opRNOCQbjvWzV2K75E1oLnRVWFKREX52pg9vqhhC0N8c72/D/sykA87rsgDpLEOs
+      TacYAaL2L0O9hiEWiFn88x4hlt4qUniRRr3eCGFyPhArjKE/uc/9yie1UCDFicPn
+      AlIZyFNm9fc0VBjZsHoKLRP7TZ8mFfDLPz8kuwzQhkHf+dKFJjjjwg4ULRXPjs41
+      CcYEpYjLc9cKFlGCC1+UaMLNfaFu7t0INBxo6pzZyVcfR7Yepox3LqoBwAfuPhom
+      SceX198MM/zWO/8Do0+HAgMBAAGjgbAwga0wCwYDVR0PBAQDAgEGMAwGA1UdEwQF
+      MAMBAf8wcQYDVR0jBGowaIAUuufINwsb8qFch+0VusTuHg2ebiWhRqREMEIxKDAm
+      BgNVBAMMH1VuaUZpIFNTTCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkxFjAUBgNVBAoM
+      DVViaXF1aXRpIEluYy6CCDNw1Zp9LZKWMB0GA1UdDgQWBBS658g3CxvyoVyH7RW6
+      xO4eDZ5uJTANBgkqhkiG9w0BAQsFAAOCAQEAOcsGWfxNjZC+lIbFJUTKs4dEkB/e
+      KiR0Iz1iiCDNie8867luPYGhSwpOOUQuC8lKa3E7B46tirMWsyftt/DfbNHK5siG
+      a6btdWMLhXDsPfLXpKvBHUtFykt7cQNJEesnwjeAzO8t/XOpBiSV3m1C381oG1o+
+      +pL619Ep+8t+pebLOVf1cVuDVihtY+JEuZHuMI/soPx8XvNiZto0ntHg7BrWWVJr
+      X9+T5lTNJIX8wetN01c6lrOmoPO/hTSaYXo6Odn2Fiw87uetzoYwFIyq5xu7CLO3
+      XTiQJAXdXfcTiQUeTqm77xMmrFAkyrquzkRnRPZO8Jz1/Xwarvp4OvY/7Q==
       -----END CERTIFICATE-----
     ''
   ];

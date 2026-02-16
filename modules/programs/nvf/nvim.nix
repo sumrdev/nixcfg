@@ -40,7 +40,7 @@
         };
         theme = {
           enable = true;
-          name = "rose-pine";
+          name = "mellow";
           style = "main";
         };
         options = {
@@ -74,8 +74,20 @@
         utility.oil-nvim.enable = true;
         telescope = {
           setupOpts = {
-            defaults.layout_config.horizontal.prompt_position = "bottom";
-            defaults.sorting_strategy = "descending";
+            defaults = {
+              layout_config.horizontal.prompt_position = "bottom";
+              sorting_strategy = "descending";
+              vimgrep_arguments = [
+                "rg"
+                "--color=never"
+                "--no-heading"
+                "--with-filename"
+                "--line-number"
+                "--column"
+                "--smart-case"
+                "--trim"
+              ];
+            };
           };
           enable = true;
         };
