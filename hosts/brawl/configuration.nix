@@ -129,6 +129,15 @@
 
   time.timeZone = "Europe/Copenhagen";
 
+  users.users.jogge = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "audio"
+    ];
+    shell = pkgs.fish;
+  };
+
   users.users.ms = {
     isNormalUser = true;
     extraGroups = [
