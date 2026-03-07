@@ -82,6 +82,14 @@
     };
     goxlr-utility.autoStart.xdg = true;
     tailscale.enable = true;
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cpu;
+
+      loadModels = [
+        "gpt-oss:20b"
+      ];
+    };
   };
 
   programs = {
@@ -115,6 +123,7 @@
       goxlr-utility
       sbctl
       steam-run
+      ollama
     ];
   };
   nix = {

@@ -21,7 +21,6 @@
       gowall
       vesktop
       jujutsu
-      comma
       tree
       python3
       neovim

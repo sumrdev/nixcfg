@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/services/tailscale.nix
+    ../../modules/programs/comma.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
@@ -159,6 +160,14 @@
     envfs.enable = true;
     tailscale.enable = true;
     openssh.enable = true;
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cpu;
+
+      loadModels = [
+        "huihui_ai/qwen2.5-abliterate:14b"
+      ];
+    };
   };
 
   programs = {
@@ -184,6 +193,7 @@
       glibc
       sbctl
       libnatpmp
+      ollama-cpu
     ];
   };
   nix.settings = {
