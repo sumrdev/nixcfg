@@ -6,8 +6,7 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
@@ -25,7 +24,7 @@
       ];
     };
     backupFileExtension = "bak";
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
   };
 
   fonts.packages = with pkgs; [
@@ -73,12 +72,21 @@
 
   programs = {
     hyprland.enable = true;
-    fish.enable = true;
     nix-ld.enable = true;
+    fish = {
+      enable = true;
+      useBabelfish = true;
+    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 7d";
   };
 
   environment = {
@@ -87,7 +95,7 @@
       NIXOS_OZONE_WL = 1;
     };
     systemPackages = with pkgs; [
-      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      inputs.rose-pine-hyprcursor.packages.${stdenv.hostPlatform.system}.default
       gcc
       glibc
       goxlr-utility

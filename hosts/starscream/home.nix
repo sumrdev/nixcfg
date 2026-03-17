@@ -56,15 +56,13 @@
       "eDP-1,2880x1920@120,0x0,2"
     ];
 
-  services.hyprpaper.settings.preload =
-    lib.mkForce
-    [
-      "/home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
-    ];
   services.hyprpaper.settings.wallpaper =
     lib.mkForce
     [
-      "eDP-1, /home/ms/.config/nixcfg/wallpapers/kanagawa.jpg"
+      {
+        monitor = "eDP-1";
+        path = "~/.config/nixcfg/wallpapers/kanagawa.jpg";
+      }
     ];
 
   programs.waybar.settings.mainbar.modules-right = ["battery"];

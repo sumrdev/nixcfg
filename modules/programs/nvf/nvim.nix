@@ -63,10 +63,10 @@
         };
         comments.comment-nvim = {
           enable = true;
-          mappings = {
-            toggleCurrentLine = "<leader>/";
-            toggleSelectedLine = "<leader>/";
-          };
+          # mappings = {
+          #   toggleCurrentLine = "<leader>/";
+          #   toggleSelectedLine = "<leader>/";
+          # };
         };
         treesitter = {
           enable = true;
