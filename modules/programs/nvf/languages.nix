@@ -21,7 +21,7 @@
         enable = true;
         lsp = {
           enable = true;
-          servers = ["roslyn_ls"];
+          servers = ["roslyn-ls"];
         };
       };
       css.enable = true;

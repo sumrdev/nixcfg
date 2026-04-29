@@ -38,6 +38,7 @@
       chromium
       kubectl
       codex
+      opencode
     ];
   };
 

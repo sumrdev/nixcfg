@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -12,7 +11,7 @@
     plugins = with pkgs.tmuxPlugins; [
       yank
       sensible
-      kanagawa
+      ukiyo
       vim-tmux-navigator
     ];
     extraConfig = ''
