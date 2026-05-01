@@ -8,17 +8,10 @@
     enable = true;
     settings = {
       imports = [
-        ./lsp/vtsls.nix
         ./languages.nix
         ./keymaps.nix
       ];
       vim = {
-        dashboard = {
-          alpha = {
-            enable = true;
-            theme = "theta";
-          };
-        };
         viAlias = false;
         vimAlias = true;
         autopairs.nvim-autopairs.enable = true;
@@ -30,6 +23,10 @@
           formatOnSave = true;
           lightbulb.enable = true;
           trouble.enable = true;
+          presets = {
+            tailwindcss-language-server.enable = true;
+            vtsls.enable = true;
+          };
           mappings = {
             codeAction = "<leader>ca";
             goToDeclaration = "<leader>gD";
@@ -62,14 +59,14 @@
         };
         comments.comment-nvim = {
           enable = true;
-          # mappings = {
-          #   toggleCurrentLine = "<leader>/";
-          #   toggleSelectedLine = "<leader>/";
-          # };
+          mappings = {
+            toggleCurrentLine = "<leader>/";
+            toggleSelectedLine = "<leader>/";
+          };
         };
         treesitter = {
           enable = true;
-          autotagHtml = true;
+          autotagHtml = false;
         };
         utility.oil-nvim.enable = true;
         telescope = {

@@ -158,5 +158,5 @@
     options = "--delete-older-than 7d";
   };
 
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
 }
