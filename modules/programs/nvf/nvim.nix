@@ -37,8 +37,9 @@
         };
         theme = {
           enable = true;
-          name = "mellow";
-          style = "main";
+          name = "rose-pine";
+          style = "moon";
+          transparent = true;
         };
         options = {
           shiftwidth = 2;
@@ -99,7 +100,11 @@
         extraPlugins = with pkgs.vimPlugins; {
           roslyn = {
             package = roslyn-nvim;
-            setup = "require('roslyn').setup({})";
+            setup = ''
+              require('roslyn').setup({
+                filewatching = "off",
+              })
+            '';
           };
         };
       };

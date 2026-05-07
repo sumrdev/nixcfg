@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   vim = {
     extraPackages = [
-      pkgs.roslyn-ls
       pkgs.dotnet-sdk_10
     ];
 
@@ -13,9 +12,8 @@
       bash.enable = true;
       csharp = {
         enable = true;
-        extensions.roslyn-nvim.setupOpts.extensions.razor.enabled = true;
         lsp = {
-          enable = true;
+          enable = false;
         };
       };
       css.enable = true;
