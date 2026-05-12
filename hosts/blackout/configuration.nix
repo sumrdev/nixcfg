@@ -14,6 +14,10 @@
     inputs.home-manager.nixosModules.home-manager
   ];
   nixpkgs.config.allowUnfree = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   boot = {
     loader = {
       systemd-boot.enable = lib.mkForce false;
@@ -60,6 +64,8 @@
     extraGroups = [
       "wheel"
       "audio"
+      "video"
+      "render"
     ];
     shell = pkgs.fish;
   };
@@ -84,7 +90,7 @@
     tailscale.enable = true;
     ollama = {
       enable = true;
-      package = pkgs.ollama-cpu;
+      package = pkgs.ollama-rocm;
 
       loadModels = [
         "gpt-oss:20b"
@@ -124,6 +130,8 @@
       sbctl
       steam-run
       ollama
+      rocmPackages.rocminfo
+      amdgpu_top
     ];
   };
   nix = {
