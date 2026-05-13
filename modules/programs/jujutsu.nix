@@ -15,6 +15,7 @@ in {
         email = "msn@uxvtechnologies.com";
       };
       ui = {
+        editor = "nvim";
         log-word-wrap = true;
         paginate = "never";
         default-command = [

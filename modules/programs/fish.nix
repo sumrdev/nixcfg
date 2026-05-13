@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -40,10 +39,6 @@
       {
         name = "jj";
         src = inputs.fish-plugin-jj;
-      }
-      {
-        name = "plugin-git";
-        src = pkgs.fishPlugins.plugin-git.src;
       }
       {
         name = "jj";
